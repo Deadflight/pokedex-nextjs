@@ -1,5 +1,5 @@
 import { CssBaseline } from '@mui/material'
-import Head from 'next/Head'
+import Head from 'next/head'
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 
