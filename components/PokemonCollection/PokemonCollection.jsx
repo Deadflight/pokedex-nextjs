@@ -1,6 +1,6 @@
 import { Card, CardActions, CardContent, CardMedia, Container, Grid, Typography, CardActionArea, Box } from "@/ui/index"
 import Image from '@/components/Image'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { POKEMON_TYPES } from "@/constants/index";
 import React, { useEffect, useState } from "react";
 import { useQuery, useInfiniteQuery } from "react-query";

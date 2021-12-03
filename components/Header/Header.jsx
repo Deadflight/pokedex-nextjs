@@ -1,6 +1,6 @@
 import { Box, Button, ButtonGroup, HomeIcon, IconButton, SearchIcon, Toolbar, Typography } from '@/ui/index'
 import { Search, SearchIconWrapper, StyledAppBar, StyledInputBase } from '@/components/Header/HeaderStyles'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/router'
 
