@@ -14,7 +14,6 @@ const Layout = ({children}) => {
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <noscript id="mui-insertion-point" />
       </Head>
-      <CssBaseline/>
       <Header/>
         {children}
       <Footer/>

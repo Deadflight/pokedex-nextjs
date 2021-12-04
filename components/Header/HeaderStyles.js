@@ -3,6 +3,7 @@ import { styled, alpha, AppBar, InputBase, themeOptions } from '@/ui/index'
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
+  marginRight: '0.5rem',
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),

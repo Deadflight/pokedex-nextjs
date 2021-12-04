@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <StyledAppBar position="static">
+      <StyledAppBar position="static" >
         <Toolbar>
           <Link href="/" passHref>
             <IconButton
@@ -57,7 +57,7 @@ const LocaleOptions = () => {
 
   return (
     <>
-      <Typography sx={{pr: '0.25rem', pl: '0.5rem', display: { xs: 'none', sm: 'block'}}} variant="body2" component="span" className="pr-3">
+      <Typography sx={{pr: '0.25rem', display: { xs: 'none', sm: 'block'}}} variant="body2" component="span">
         {t('language')}:
       </Typography>
       {locales.map((loc) => (

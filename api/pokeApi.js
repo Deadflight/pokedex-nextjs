@@ -13,6 +13,15 @@ import axios from 'axios'
 //   }
 // }
 
+export const getPokemons = async ({pageParam = 0, limit = 20}) => {
+  try {
+    const POKE_API_URL =  `https://pokeapi.co/api/v2/pokemon?offset=${pageParam}&limit=${limit}`
+    return await fetch(`${POKE_API_URL}`).then((res) => res.json())
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const getPokemonsDetails = async (pokemon) => {
   try {
     const {data} = await axios.get(`${pokemon}`)

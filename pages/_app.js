@@ -1,13 +1,37 @@
-import '../styles/globals.css'
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import Head from 'next/head';
+import CssBaseline from '@mui/material/CssBaseline';
+import { CacheProvider } from '@emotion/react';
+import createEmotionCache from '@/ui/createEmotionCache';
 import { appWithTranslation } from 'next-i18next';
 import { QueryProvider } from 'api/QueryProvider';
 
-function MyApp({ Component, pageProps }) {
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp(props) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
-    <QueryProvider >
-      <Component {...pageProps} />
-    </QueryProvider>
-  )
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <title>My page</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <QueryProvider>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Component {...pageProps} />
+      </QueryProvider>
+    </CacheProvider>
+  );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
+  pageProps: PropTypes.object.isRequired,
+};
 
 export default appWithTranslation(MyApp)

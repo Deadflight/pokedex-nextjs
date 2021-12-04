@@ -17,4 +17,6 @@ export const POKEMON_TYPES = {
 	dark: '#705746',
 	steel: '#B7B7CE',
 	fairy: '#D685AD',
+	unknown: '#d8e6dd',
+	shadow: '#333333'
 }
