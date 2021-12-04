@@ -67,12 +67,9 @@ const Pokemones = () => {
 
 const PokemonCollection = () => {
   return (
-
-    <Container sx={{ py: 8}} maxWidth="lg">
         <Grid container spacing={4} justifyContent="center" >
           <Pokemones/>
         </Grid>
-    </Container>
   )    
 }
 

@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, HomeIcon, IconButton, SearchIcon, Toolbar, Typography } from '@/ui/index'
+import { Box, Button, ButtonGroup, HomeIcon, IconButton, SearchIcon, Toolbar, Typography, themeOptions } from '@/ui/index'
 import { Search, SearchIconWrapper, StyledAppBar, StyledInputBase } from '@/components/Header/HeaderStyles'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
@@ -30,7 +30,12 @@ const Header = () => {
           >
             Pokedex
           </Typography>
-          <Search>
+          <Link href="/search" passHref>
+            <IconButton aria-label="search" color="inherit">
+              <SearchIcon/>
+            </IconButton>
+          </Link>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon/>
             </SearchIconWrapper>
@@ -38,7 +43,7 @@ const Header = () => {
               placeholder={t('search')}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <LocaleOptions/>
         </Toolbar>
       </StyledAppBar>
