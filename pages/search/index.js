@@ -5,10 +5,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { useState } from "react"
 import { useInfiniteQuery } from "react-query"
 
-export const getStaticProps = async ({ locale }) => ({
-  props: await serverSideTranslations(locale),
-})
-
 
 
 const Search = () => {
