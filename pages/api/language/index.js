@@ -14,6 +14,9 @@ const languageHandler = (request, response) => {
     return response.status(200).json({
       preferredLocale,
       defaultLocale: DEFAULT_LOCALE,
+      body: req.body,
+      query: req.query,
+      cookies: req.cookies,
     })
   }
 
