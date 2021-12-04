@@ -1,4 +1,4 @@
-import { serialize, CookieSerializeOptions } from 'cookie'
+import { serialize } from 'cookie'
 
 // Sadly, getting the locale info in API Routes is not officially supported.
 // It should match next.config::i18n.defaultLocale
@@ -7,7 +7,7 @@ const DEFAULT_LOCALE = 'en'
 // Learn more: https://nextjs.org/docs/advanced-features/i18n-routing#leveraging-the-next_locale-cookie
 const PREFERRED_LOCALE_COOKIE = 'NEXT_LOCALE'
 
-const language = (request, response) => {
+const languageHandler = (request, response) => {
   if (request.method === 'GET') {
     const preferredLocale = request.cookies[PREFERRED_LOCALE_COOKIE] || ''
 
@@ -53,4 +53,4 @@ function setCookie(
   res.setHeader('Set-Cookie', serialize(name, String(stringValue), options))
 }
 
-export default language
+export default languageHandler
