@@ -13,14 +13,10 @@ import axios from 'axios'
 //   }
 // }
 
-export const getPokemonsDetails = async (pokemons) => {
-    try {
-    let pokemonData = []
-    pokemons.map(async (pokemon, i) => {
-      const {data} = await axios.get(`${pokemon.url}`)
-      pokemonData[i] = await data
-    })
-    return pokemonData
+export const getPokemonsDetails = async (pokemon) => {
+  try {
+    const {data} = await axios.get(`${pokemon}`)
+    return data
   } catch (error) {
     console.log(error)
   }

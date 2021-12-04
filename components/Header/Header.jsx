@@ -12,7 +12,7 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
         <Toolbar>
-          <Link href="/">
+          <Link href="/" passHref>
             <IconButton
               size="large"
               edge="start"

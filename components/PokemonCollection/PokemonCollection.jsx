@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardMedia, Container, Grid, Typography, CardActionArea, Box } from "@/ui/index"
+import { Card, CardActions, CardContent, CardMedia, Container, Grid, Typography, CardActionArea, Box, Button, themeOptions } from "@/ui/index"
 import Image from '@/components/Image'
 import Link from 'next/link'
 import { POKEMON_TYPES } from "@/constants/index";
@@ -9,42 +9,49 @@ import axios from "axios";
 
 
 
-const PokemonCard =  ({pokemons}) => {
-  console.log(pokemons)
-  const [pokemonData, setPokemonData] = useState([])
+const PokemonCard =  ({pokemon}) => {
+  const [pokemonData, setPokemonData] = useState({
+    name: '',
+    sprites: {
+      front_default: ''
+    },
+    id: 0,
+    types: []
+  })
+  const [isFetching, setIsFetching] = useState(true)
   useEffect(() => {
-    getPokemonsDetails(pokemons).then((res) => {
-      let newPokemonData = res
-      setPokemonData(newPokemonData)
+    setIsFetching(true)
+    getPokemonsDetails(pokemon).then((res) => {
+      setPokemonData(res)     
+      setIsFetching(false)
     });
-    console.log(pokemonData)
-  }, [pokemons])
-
-  
+  }, [pokemon])
 
   return (
     <>
-      <Grid container spacing={4}>
-        {pokemonData.map((pokemon) => (
-          <Grid item key={pokemon.name} xs={12} sm={6} md={4}>
-            <Link href={`/pokemon-detail/${pokemon.id}`} passHref>
+      {isFetching
+      ? <p>Cargando</p>
+      : 
+          <Grid item key={pokemonData?.name} xs={12} sm={6} md={3}>
+            <Link href={`/pokemon-detail/${pokemonData?.id}`} passHref>
               <Card sx={{height:'100%', display: 'flex', flexDirection: 'column', backgroundColor:'#EEEEEE'}}>
                 <CardActionArea>
                   <CardMedia>
-                    <Image src={pokemon.sprites.front_default} alt={pokemon.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
+                    <Image src={pokemonData?.sprites?.front_default} alt={pokemonData?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
                   </CardMedia>
                   <CardContent>
                     <Typography align="center" gutterBottom variant="h5" component="div">
-                      {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                      {pokemonData?.name[0].toUpperCase() + pokemonData?.name.slice(1)}
                     </Typography>
-                    <PokemonTypes pokemonTypes={pokemon.types}/>
+                    <PokemonTypes pokemonTypes={pokemonData?.types}/>
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Link>
           </Grid>
-        ))}
-      </Grid>
+
+      }
+
     </>
   )
 }
@@ -77,22 +84,13 @@ const Pokemones = () => {
   const limitPerPage = 20;
 
   const {
-
     data,
-
     error,
-
     fetchNextPage,
-
     hasNextPage,
-
-    isFetching,
-
     isFetchingNextPage,
-
     status,
-
-  } = useInfiniteQuery(['pokemons'], fetchPokemons, {
+  } = useInfiniteQuery('pokemons', fetchPokemons, {
     getNextPageParam: (lastPage,pages) => {
       if(pages.length < lastPage.count ) {
         const nextPage = pages.length * limitPerPage
@@ -102,68 +100,55 @@ const Pokemones = () => {
       }
     },
   })
+
   return status === 'loading' ? (
-
     <p>Loading...</p>
-
   ) : status === 'error' ? (
-
     <p>Error: {error.message}</p>
-
   ) : (
     
     <>   
 
-      {data.pages.map((group, i) => (
-        
-      <React.Fragment key={i}>
-        <PokemonCard pokemons={group.results}/>
+      {data?.pages?.map((group, i) => (        
+        <React.Fragment key={i}>
+          {group?.results?.map((pokemon) => (
+            <PokemonCard key={pokemon.name} pokemon={pokemon.url}/>
+          ))}
+        </React.Fragment>
+      ))}
 
 
-
-      </React.Fragment>
-
-      ))}  
+      <Grid item>
       
-
-      <div>
-
-        <button
-
+        <Button sx={{
+          backgroundColor: themeOptions.palette.primary.main, 
+            ":hover": {
+              backgroundColor: themeOptions.palette.primary.contrastText, 
+              color: themeOptions.palette.primary.main 
+            },
+          }} 
+          variant="contained"
           onClick={() => fetchNextPage()}
-
           disabled={!hasNextPage || isFetchingNextPage}
-
         >
-
           {isFetchingNextPage
-
             ? 'Loading more...'
-
             : hasNextPage
-
             ? 'Load More'
-
             : 'Nothing more to load'}
-
-        </button>
-
-      </div>
-
-      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
-
+        </Button>
+      </Grid>
     </>
-
   )
-
 }
 
 const PokemonCollection = () => {
   return (
 
     <Container sx={{ py: 8}} maxWidth="lg">
-        {/* <Pokemones pokemonData={pokemonData}/> */}
-        <Pokemones/>
+        <Grid container spacing={4}>
+          <Pokemones/>
+        </Grid>
     </Container>
   )    
 }
