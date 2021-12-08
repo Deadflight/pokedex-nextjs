@@ -45,8 +45,6 @@ const Search = () => {
   })
 
   const emptyResults = status !== 'success' || get(data, 'pages.length', 0) === 0 || searchTerm === ""
-  
-  console.log(result)
 
   return (
     <Layout>
@@ -69,8 +67,12 @@ const Search = () => {
                 />
           </FormControl>
         </Grid>
+        <Grid item xs={12}>
+
+        </Grid>
+
         {   
-          !result.length < 1
+          !result.length < 1 && !emptyResults
             ? result.map((pokemon) => (
               <PokemonCard key={pokemon.name} pokemon={pokemon}/>
             ))

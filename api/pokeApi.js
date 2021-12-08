@@ -32,3 +32,12 @@ export const getPokemonsDetails = async (pokemon) => {
     console.log(error)
   }
 }
+
+export const getPokemon = async (pokemonId) => {
+  try {
+    const {data} = await axios.get(`hhttps://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
