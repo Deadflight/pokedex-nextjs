@@ -1,0 +1,5 @@
+{
+  "searchPokemon": "Buscar Pokemon",
+  "notFound": "No pudimos encontrar nada por \"{{term}}\"",
+  "searchInput": "Buscar aquí"
+}

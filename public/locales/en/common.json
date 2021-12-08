@@ -1,5 +1,8 @@
 {
   "search": "Search...",
   "language": "Language",
-  "about": "About"
+  "about": "About",
+  "loadingMore": "Loading more...",
+  "loadMore": "Load more",
+  "nothingToLoad": "Nothing more to load"
 }

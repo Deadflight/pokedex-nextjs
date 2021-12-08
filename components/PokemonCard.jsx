@@ -2,18 +2,11 @@ import { Card, CardContent, CardMedia, Container, Grid, Typography, CardActionAr
 import Link from 'next/link'
 import Image from '@/components/Image'
 import PokemonTypes from "@/components/PokemonTypes"
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getPokemonsDetails } from "@/api/pokeApi"
 
 const PokemonCard =  ({pokemon}) => {
-  const [pokemonData, setPokemonData] = useState({
-    name: '',
-    sprites: {
-      front_default: ''
-    },
-    id: 0,
-    types: []
-  })
+  const [pokemonData, setPokemonData] = useState({})
   const [isFetching, setIsFetching] = useState(true)
   useEffect(() => {
     setIsFetching(true)
@@ -28,7 +21,7 @@ const PokemonCard =  ({pokemon}) => {
       {isFetching
       ? null
       : 
-          <Grid item key={pokemonData?.name} xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Link href={`/pokemon-detail/${pokemonData?.id}`} passHref>
               <Card sx={{height:'100%', display: 'flex', flexDirection: 'column', background: `linear-gradient(0deg, #e6e6e6 0%, rgba(58,57,61,0) 20%)` }}>
                 <CardActionArea>
@@ -37,7 +30,7 @@ const PokemonCard =  ({pokemon}) => {
                   </CardMedia>
                   <CardContent>
                     <Typography align="center" gutterBottom variant="h5" component="div">
-                      {pokemonData?.name[0].toUpperCase() + pokemonData?.name.slice(1)}
+                      {pokemonData?.name[0]?.toUpperCase() + pokemonData?.name?.slice(1)}
                     </Typography>
                     <PokemonTypes pokemonTypes={pokemonData?.types}/>
                   </CardContent>
