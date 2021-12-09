@@ -39,13 +39,9 @@ export const getStaticProps = async ({ params, locale }) => {
 }
 
 export const getStaticPaths = async ({locales}) => {
-  if(locales === undefined){
-    throw new Error(
-      'Uh, did you forget to configure locales in your Next.js config?'
-    )
-  }
 
-  const pokemonEntries = await getAllPokemons({limit: 10})
+
+  const pokemonEntries = await getAllPokemons({limit: 20})
 
   
 
