@@ -1,4 +1,4 @@
-import { getAllPokemons, getPokemon } from "@/api/pokeApi"
+import { getAllPokemones, getAllPokemons, getPokemon } from "@/api/pokeApi"
 import Layout from "@/components/Layout";
 import { POKEMON_TYPES } from "@/constants/index";
 import { Grid, Typography } from "@/ui/index";
@@ -45,7 +45,7 @@ export const getStaticPaths = async ({locales}) => {
     )
   }
 
-  const pokemonEntries = await getAllPokemons({limit: 20})
+  const pokemonEntries = await getAllPokemones()
 
   
 
@@ -68,19 +68,21 @@ export const getStaticPaths = async ({locales}) => {
 
 const PokemonDetail = ({ pokemon }) => {
 
+  const defaultImage = "https://images.unsplash.com/photo-1542779283-429940ce8336?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+
   const { t } = useTranslation(['pokemon-detail-page'])
 
   return (
     <Layout>
       <Grid container sx={{justifyContent: 'center'}}>
         <Grid item xs={12}>
-          <Typography align="center" sx={{color: `${POKEMON_TYPES[pokemon.types[0].type.name]}`}} gutterBottom variant="h4">
-            {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+          <Typography align="center" sx={{color: `${POKEMON_TYPES[pokemon?.types[0]?.type?.name]}`}} gutterBottom variant="h4">
+            {pokemon?.name[0]?.toUpperCase() + pokemon?.name?.slice(1)}
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
           <Grid container sx={{justifyContent: 'center'}}>
-            <Image src={pokemon?.sprite} alt={pokemon?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
+            <Image src={pokemon?.sprites?.front_default || defaultImage } alt={pokemon?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
           </Grid>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -91,8 +93,8 @@ const PokemonDetail = ({ pokemon }) => {
             <Grid item xs={12}>
               <Typography variant="h6" sx={{}} >{t('abilities')}:
                 {
-                  pokemon.abilities.map(({ability}) => (
-                    ability.name[0].toUpperCase() + ability.name.slice(1) + " "
+                  pokemon?.abilities?.map(({ability}) => (
+                    ability?.name[0]?.toUpperCase() + ability?.name?.slice(1) + " "
                   ))
                 }
               </Typography>
@@ -100,16 +102,16 @@ const PokemonDetail = ({ pokemon }) => {
 
             <Grid item xs={12}>
                 <Typography variant="h6">
-                    {t('height')}: {pokemon.height}m
+                    {t('height')}: {pokemon?.height}m
                 </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography variant="h6" align="center">{t('baseStats')}</Typography>
             </Grid>
             {
-              pokemon.stats.map(({base_stat, stat}) => (
+              pokemon?.stats?.map(({base_stat, stat}) => (
                 <Grid item md={6} key={base_stat}>
-                  <Typography variant="h6" >{t(`${stat.name}`)}  : {base_stat}</Typography>
+                  <Typography variant="h6" >{t(`${stat?.name}`)}  : {base_stat}</Typography>
                 </Grid>
               ))
             }
