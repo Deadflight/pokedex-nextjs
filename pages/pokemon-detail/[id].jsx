@@ -26,6 +26,7 @@ export const getStaticProps = async ({ params, locale }) => {
     }
     
   } catch (e) {
+    console.log(e)
     return {
       notFound: true
     }
