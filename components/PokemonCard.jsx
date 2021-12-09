@@ -4,6 +4,7 @@ import Image from '@/components/Image'
 import PokemonTypes from "@/components/PokemonTypes"
 import { useEffect, useState } from "react";
 import { getPokemon } from "@/api/pokeApi"
+import { POKEMON_TYPES } from "@/constants/index";
 
 const PokemonCard =  ({pokemon}) => {
   const [pokemonData, setPokemonData] = useState({})
@@ -29,7 +30,7 @@ const PokemonCard =  ({pokemon}) => {
                     <Image src={pokemonData?.sprite} alt={pokemonData?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
                   </CardMedia>
                   <CardContent>
-                    <Typography align="center" gutterBottom variant="h5" component="div">
+                    <Typography align="center" sx={{color: `${POKEMON_TYPES[pokemonData.types[0].type.name]}`}} gutterBottom variant="h5" component="div">
                       {pokemonData?.name[0]?.toUpperCase() + pokemonData?.name?.slice(1)}
                     </Typography>
                     <PokemonTypes pokemonTypes={pokemonData?.types}/>

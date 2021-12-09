@@ -89,26 +89,27 @@ const PokemonDetail = ({ pokemon }) => {
               <PokemonTypes pokemonTypes={pokemon?.types} />
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h5">{t('abilities')}:
+              <Typography variant="h6" sx={{}} >{t('abilities')}:
                 {
                   pokemon.abilities.map(({ability}) => (
-                    t(`${ability.name}`)
+                    ability.name[0].toUpperCase() + ability.name.slice(1) + " "
                   ))
                 }
               </Typography>
             </Grid>
+
             <Grid item xs={12}>
-                <Typography variant="h5">
+                <Typography variant="h6">
                     {t('height')}: {pokemon.height}m
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h5" align="center">{t('baseStats')}</Typography>
+              <Typography variant="h6" align="center">{t('baseStats')}</Typography>
             </Grid>
             {
               pokemon.stats.map(({base_stat, stat}) => (
                 <Grid item md={6} key={base_stat}>
-                  <Typography variant="h5" >{t(`${stat.name}`)}  : {base_stat}</Typography>
+                  <Typography variant="h6" >{t(`${stat.name}`)}  : {base_stat}</Typography>
                 </Grid>
               ))
             }
