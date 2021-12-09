@@ -12,6 +12,12 @@ import { useTranslation } from "react-i18next";
 export const getStaticProps = async ({ params, locale }) => {
   const id = params.id;
 
+  if(typeof id !== 'string'){
+
+    return{
+      notFound: true  
+    }
+  }
 
   try {
     const pokemon = await getPokemon(id)
@@ -26,7 +32,6 @@ export const getStaticProps = async ({ params, locale }) => {
     }
     
   } catch (e) {
-    console.log(e)
     return {
       notFound: true
     }
@@ -34,7 +39,11 @@ export const getStaticProps = async ({ params, locale }) => {
 }
 
 export const getStaticPaths = async ({locales}) => {
-
+  if(locales === undefined){
+    throw new Error(
+      'Uh, did you forget to configure locales in your Next.js config?'
+    )
+  }
 
   const pokemonEntries = await getAllPokemons({limit: 20})
 
@@ -53,7 +62,7 @@ export const getStaticPaths = async ({locales}) => {
     paths,
 
     // Block until the server gets its data. Like in Server side rendering
-    fallback: 'blocking' 
+    fallback: 'blocking'
   }
 }
 

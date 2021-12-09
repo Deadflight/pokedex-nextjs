@@ -82,6 +82,7 @@ const Search = () => {
                   <Typography variant="body1">{t('notFound', {term})}</Typography>
                 </Grid>
               )
+              
               : null
         }
       </Grid>
