@@ -68,8 +68,6 @@ export const getStaticPaths = async ({locales}) => {
 
 const PokemonDetail = ({ pokemon }) => {
 
-  const defaultImage = "https://images.unsplash.com/photo-1542779283-429940ce8336?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-
   const { t } = useTranslation(['pokemon-detail-page'])
 
   return (
@@ -82,7 +80,7 @@ const PokemonDetail = ({ pokemon }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Grid container sx={{justifyContent: 'center'}}>
-            <Image src={pokemon?.sprites?.front_default || defaultImage } alt={pokemon?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
+            <Image src={pokemon?.sprites?.front_default} alt={pokemon?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
           </Grid>
         </Grid>
         <Grid item xs={12} md={6}>
