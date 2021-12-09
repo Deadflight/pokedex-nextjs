@@ -1,4 +1,4 @@
-import { getAllPokemons, getPokemon, getPokemonsDetails } from "@/api/pokeApi"
+import { getAllPokemons, getPokemon } from "@/api/pokeApi"
 import Layout from "@/components/Layout";
 import { POKEMON_TYPES } from "@/constants/index";
 import { Grid, Typography } from "@/ui/index";
