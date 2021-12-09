@@ -6,7 +6,7 @@ const PokemonTypes = ({pokemonTypes}) => {
   const { t } = useTranslation(['pokemonTypes'])
 
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <Grid container spacing={2} sx={{justifyContent: 'center'}}>
       {pokemonTypes.map((types) => (
         <Grid item xs={12} sm={6} key={types.type.name}>
           <Box sx={{ backgroundColor: POKEMON_TYPES[types.type.name], borderRadius: 1 }}>

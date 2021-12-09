@@ -6,6 +6,7 @@ import flatMap from 'lodash/flatMap'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from '@/components/Image'
 import PokemonTypes from "@/components/PokemonTypes";
+import { useTranslation } from "react-i18next";
 
 
 export const getStaticProps = async ({ params, locale }) => {
@@ -67,41 +68,47 @@ export const getStaticPaths = async ({locales}) => {
 
 const PokemonDetail = ({ pokemon }) => {
 
+  const { t } = useTranslation(['pokemon-detail-page'])
+
   return (
     <Layout>
       <Grid container sx={{justifyContent: 'center'}}>
         <Grid item xs={12}>
           <Typography align="center" sx={{color: `${POKEMON_TYPES[pokemon.types[0].type.name]}`}} gutterBottom variant="h4">
-            {pokemon.name[0].toUpperCase() + pokemon.name.slice(1) }
+            {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
           <Grid container sx={{justifyContent: 'center'}}>
-            <Image src={pokemon?.sprites?.front_default} alt={pokemon?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
-            <PokemonTypes pokemonTypes={pokemon?.types} />
+            <Image src={pokemon?.sprite} alt={pokemon?.name} layout="intrinsic" width={460} aspectRatio="4:3"/>
           </Grid>
         </Grid>
-        <Grid items xs={12} md={6}>
-          <Grid container spacing={1}>
+        <Grid item xs={12} md={6}>
+          <Grid container spacing={1} mt={2}>
             <Grid item xs={12}>
-              <Typography variant="h5">Abilities:
+              <PokemonTypes pokemonTypes={pokemon?.types} />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h5">{t('abilities')}:
                 {
                   pokemon.abilities.map(({ability}) => (
-                    ability.name[0].toUpperCase() + ability.name.slice(1)
+                    t(`${ability.name}`)
                   ))
                 }
               </Typography>
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="h5">
-                    Height: {pokemon.height}m
+                    {t('height')}: {pokemon.height}m
                 </Typography>
             </Grid>
-            
+            <Grid item xs={12}>
+              <Typography variant="h5" align="center">{t('baseStats')}</Typography>
+            </Grid>
             {
               pokemon.stats.map(({base_stat, stat}) => (
                 <Grid item md={6} key={base_stat}>
-                  <Typography variant="h5" >{stat.name}: {base_stat}</Typography>
+                  <Typography variant="h5" >{t(`${stat.name}`)}  : {base_stat}</Typography>
                 </Grid>
               ))
             }

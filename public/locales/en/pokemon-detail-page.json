@@ -1,0 +1,11 @@
+{
+  "abilities": "Abilities",
+  "height": "Height",
+  "hp": "HP",
+  "attack": "Attack",
+  "defense": "Defense",
+  "special-attack": "Special attack",
+  "special-defense": "Special defense",
+  "speed": "Speed",
+  "baseStats":"Base Stats"
+}
