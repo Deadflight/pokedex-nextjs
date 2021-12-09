@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 
 export const getStaticProps = async ({ params, locale }) => {
-  const id = params.id;
+  const id = params?.id;
 
   if(typeof id !== 'string'){
 
