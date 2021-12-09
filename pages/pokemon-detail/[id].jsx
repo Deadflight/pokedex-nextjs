@@ -12,12 +12,6 @@ import { useTranslation } from "react-i18next";
 export const getStaticProps = async ({ params, locale }) => {
   const id = params.id;
 
-  if(typeof id !== 'string'){
-
-    return{
-      notFound: true  
-    }
-  }
 
   try {
     const pokemon = await getPokemon(id)
@@ -58,7 +52,7 @@ export const getStaticPaths = async ({locales}) => {
     paths,
 
     // Block until the server gets its data. Like in Server side rendering
-    fallback: 'blocking'
+    fallback: 'blocking' 
   }
 }
 
