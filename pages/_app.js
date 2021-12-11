@@ -4,9 +4,10 @@ import Head from 'next/head';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from '@/ui/createEmotionCache';
-import { appWithTranslation } from 'next-i18next';
 import { QueryProvider } from 'api/QueryProvider';
 import { useServerStyles } from '@/ui/ssr';
+import { appWithI18Next } from 'ni18n'
+import { ni18nConfig } from '../ni18n.config'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,4 +40,4 @@ MyApp.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-export default appWithTranslation(MyApp)
+export default appWithI18Next(MyApp, ni18nConfig);

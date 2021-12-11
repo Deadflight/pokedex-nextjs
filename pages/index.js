@@ -1,10 +1,10 @@
 import Layout from '@/components/Layout';
 import PokemonCollection from '@/components/PokemonCollection/PokemonCollection';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import { loadTranslations } from 'ni18n';
+import { ni18nConfig } from 'ni18n.config';
 
 export const getStaticProps = async({locale}) => {
-  const i18Conf = await serverSideTranslations(locale)
+  const i18Conf = await loadTranslations(ni18nConfig, locale)
 
   return {
     props: {

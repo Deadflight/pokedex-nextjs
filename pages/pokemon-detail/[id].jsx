@@ -3,13 +3,14 @@ import Layout from "@/components/Layout";
 import { POKEMON_TYPES } from "@/constants/index";
 import { Grid, Typography } from "@/ui/index";
 import flatMap from 'lodash/flatMap'
-//import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from '@/components/Image'
 import PokemonTypes from "@/components/PokemonTypes";
-//import { useTranslation } from "react-i18next";
+import { loadTranslations } from "ni18n";
+import { useTranslation } from "react-i18next";
+import { ni18nConfig } from "ni18n.config"
 
 
-export const getStaticProps = async ({ params}) => {
+export const getStaticProps = async ({params, locale}) => {
   const id = params?.id;
 
   if(typeof id !== 'string'){
@@ -21,12 +22,12 @@ export const getStaticProps = async ({ params}) => {
 
   try {
     const pokemon = await getPokemon(id)
-    //const i18nConf = await serverSideTranslations(locale)
+    const i18nConf = await loadTranslations(ni18nConfig, locale, ['pokemon-detail-page'])
 
     return{
       props: {
         pokemon,
-        //...i18nConf
+        ...i18nConf
       },
       revalidate: 5 * 60, // once every five minutes
     }
@@ -62,7 +63,7 @@ export const getStaticPaths = async () => {
 
 const PokemonDetail = ({ pokemon }) => {
 
-  //const { t } = useTranslation(['pokemon-detail-page'])
+  const { t } = useTranslation(['pokemon-detail-page'])
 
   return (
     <Layout>
@@ -83,7 +84,7 @@ const PokemonDetail = ({ pokemon }) => {
               <PokemonTypes pokemonTypes={pokemon?.types} />
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6">Abilites:
+              <Typography variant="h6">{t('abilities')}:
                 {
                   pokemon?.abilities?.map(({ability}) => (
                     ability?.name[0]?.toUpperCase() + ability?.name?.slice(1) + " "
@@ -94,7 +95,7 @@ const PokemonDetail = ({ pokemon }) => {
 
             <Grid item xs={12}>
                 <Typography variant="h6">
-                    Height: {pokemon?.height}
+                    {t('height')}: {pokemon?.height}
                 </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -103,7 +104,7 @@ const PokemonDetail = ({ pokemon }) => {
             {
               pokemon?.stats?.map(({base_stat, stat}) => (
                 <Grid item md={6} key={base_stat}>
-                  <Typography variant="h6" >${stat?.name}  : {base_stat}</Typography>
+                  <Typography variant="h6" >{t(`${stat?.name}`)}: {base_stat}</Typography>
                 </Grid>
               ))
             }

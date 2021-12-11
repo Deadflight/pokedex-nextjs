@@ -1,6 +1,6 @@
 import {Grid, Typography, Box } from "@/ui/index"
 import { POKEMON_TYPES } from "@/constants/index";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const PokemonTypes = ({pokemonTypes}) => {
   const { t } = useTranslation(['pokemonTypes'])

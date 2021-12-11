@@ -14,7 +14,7 @@ import {
   Typography
 } from '@/ui/index'
 import { StyledFooter } from './FooterStyles'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
   const { t } = useTranslation(['common'])

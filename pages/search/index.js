@@ -2,7 +2,6 @@ import Layout from "@/components/Layout"
 import PokemonCard from "@/components/PokemonCard"
 import { Grid, Container, SearchIcon, Typography, CircularProgress, Button, themeOptions, Box } from "@/ui/index.js"
 import { FormControl, InputAdornment, InputLabel, OutlinedInput } from "@mui/material"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import React, { useEffect, useState } from "react"
 import get from 'lodash/get'
 import { useInfinitePokemonQuery } from "@/api/useInfinitePokemonQuery"
@@ -10,9 +9,11 @@ import FetchingButton from "@/components/FetchingButton"
 import { getAllPokemons } from "@/api/pokeApi"
 import { debounce } from "lodash"
 import { useTranslation } from "react-i18next"
+import { loadTranslations } from "ni18n"
+import { ni18nConfig } from "ni18n.config"
 
 export const getStaticProps = async({locale}) => {
-  const i18Conf = await serverSideTranslations(locale)
+  const i18Conf = await loadTranslations(ni18nConfig, locale, ['search-page'])
 
   return {
     props: {
