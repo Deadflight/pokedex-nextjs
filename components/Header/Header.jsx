@@ -66,21 +66,15 @@ const LocaleOptions = () => {
         {t('language')}:
       </Typography>
       {locales.map((loc) => (
-        <form
-          action="/api/language"
-          method="POST"
-          key={loc}
-        >
-          <input name="preferredLocale" value={loc} type="hidden"></input>
+        <Link href="/" locale={loc} key={loc} passHref>
           <Button
             variant={loc === locale ? 'outlined' : 'text'}
-            type="submit"
             color="inherit"
             size="small"
           >
             {loc}
           </Button>
-        </form>
+        </Link>
       ))}
     </>
   )
