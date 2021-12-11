@@ -12,7 +12,6 @@ import { ni18nConfig } from "../../ni18n.config"
 
 export const getStaticProps = async ({params,locale}) => {
   const id = params?.id;
-
   if(typeof id !== 'string'){
 
     return{
@@ -62,7 +61,9 @@ export const getStaticPaths = async ({locales}) => {
 
 const PokemonDetail = ({ pokemon }) => {
 
-  const { t } = useTranslation(['pokemon-detail-page'])
+  const { t } = useTranslation('pokemon-detail-page')
+  console.log(t)
+  console.log(t('abilities'))
 
   return (
     <Layout>
