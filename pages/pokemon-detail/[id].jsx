@@ -94,7 +94,7 @@ const PokemonDetail = ({ pokemon }) => {
 
             <Grid item xs={12}>
                 <Typography variant="h6">
-                    {t('height')}: {pokemon?.height}m
+                    Height: {pokemon?.height}
                 </Typography>
             </Grid>
             <Grid item xs={12}>
