@@ -3,13 +3,13 @@ import Layout from "@/components/Layout";
 import { POKEMON_TYPES } from "@/constants/index";
 import { Grid, Typography } from "@/ui/index";
 import flatMap from 'lodash/flatMap'
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+//import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from '@/components/Image'
 import PokemonTypes from "@/components/PokemonTypes";
-import { useTranslation } from "react-i18next";
+//import { useTranslation } from "react-i18next";
 
 
-export const getStaticProps = async ({ params, locale }) => {
+export const getStaticProps = async ({ params}) => {
   const id = params?.id;
 
   if(typeof id !== 'string'){
@@ -83,7 +83,7 @@ const PokemonDetail = ({ pokemon }) => {
               <PokemonTypes pokemonTypes={pokemon?.types} />
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" sx={{}} >{t('abilities')}:
+              <Typography variant="h6">Abilites:
                 {
                   pokemon?.abilities?.map(({ability}) => (
                     ability?.name[0]?.toUpperCase() + ability?.name?.slice(1) + " "
