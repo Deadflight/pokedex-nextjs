@@ -52,7 +52,7 @@ const Header = () => {
 }
 
 const LocaleOptions = () => {
-  const { locales, locale } = useRouter()
+  const { locales, locale, asPath } = useRouter()
   const { t } = useTranslation(['common'])
 
   // Locales aren't configured
@@ -66,7 +66,7 @@ const LocaleOptions = () => {
         {t('language')}:
       </Typography>
       {locales.map((loc) => (
-        <Link href="/" locale={loc} key={loc} passHref>
+        <Link href={asPath} locale={loc} key={loc} passHref>
           <Button
             variant={loc === locale ? 'outlined' : 'text'}
             color="inherit"
