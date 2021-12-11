@@ -21,12 +21,12 @@ export const getStaticProps = async ({ params, locale }) => {
 
   try {
     const pokemon = await getPokemon(id)
-    const i18nConf = await serverSideTranslations(locale)
+    //const i18nConf = await serverSideTranslations(locale)
 
     return{
       props: {
         pokemon,
-        ...i18nConf
+        //...i18nConf
       },
       revalidate: 5 * 60, // once every five minutes
     }
@@ -38,12 +38,7 @@ export const getStaticProps = async ({ params, locale }) => {
   }
 }
 
-export const getStaticPaths = async ({locales}) => {
-  if(locales === undefined){
-    throw new Error(
-      'Uh, did you forget to configure locales in your Next.js config?'
-    )
-  }
+export const getStaticPaths = async () => {
 
   const pokemonEntries = await getAllPokemones()
 
@@ -54,8 +49,7 @@ export const getStaticPaths = async ({locales}) => {
       params: {
         id: pokemon.url.slice(34,-1)
       }
-    })),
-    (path) => locales.map((loc) => ({ locale: loc, ...path })) 
+    }))
   )
 
   return{
@@ -68,7 +62,7 @@ export const getStaticPaths = async ({locales}) => {
 
 const PokemonDetail = ({ pokemon }) => {
 
-  const { t } = useTranslation(['pokemon-detail-page'])
+  //const { t } = useTranslation(['pokemon-detail-page'])
 
   return (
     <Layout>
@@ -104,7 +98,7 @@ const PokemonDetail = ({ pokemon }) => {
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" align="center">{t('baseStats')}</Typography>
+              <Typography variant="h6" align="center">Base Stats</Typography>
             </Grid>
             {
               pokemon?.stats?.map(({base_stat, stat}) => (
