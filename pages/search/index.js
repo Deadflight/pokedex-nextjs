@@ -10,7 +10,7 @@ import { getAllPokemons } from "@/api/pokeApi"
 import { debounce } from "lodash"
 import { useTranslation } from "react-i18next"
 import { loadTranslations } from "ni18n"
-import { ni18nConfig } from "ni18n.config"
+import { ni18nConfig } from "../../ni18n.config"
 
 export const getStaticProps = async({locale}) => {
   const i18Conf = await loadTranslations(ni18nConfig, locale, ['search-page'])

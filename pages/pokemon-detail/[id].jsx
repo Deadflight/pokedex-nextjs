@@ -1,4 +1,4 @@
-import { getAllPokemones, getAllPokemons, getPokemon } from "@/api/pokeApi"
+import { getAllPokemons, getPokemon } from "@/api/pokeApi"
 import Layout from "@/components/Layout";
 import { POKEMON_TYPES } from "@/constants/index";
 import { Grid, Typography } from "@/ui/index";
@@ -7,7 +7,7 @@ import Image from '@/components/Image'
 import PokemonTypes from "@/components/PokemonTypes";
 import { loadTranslations } from "ni18n";
 import { useTranslation } from "react-i18next";
-import { ni18nConfig } from "ni18n.config"
+import { ni18nConfig } from "../../ni18n.config"
 
 
 export const getStaticProps = async ({params, locale}) => {
@@ -41,7 +41,7 @@ export const getStaticProps = async ({params, locale}) => {
 
 export const getStaticPaths = async () => {
 
-  const pokemonEntries = await getAllPokemones()
+  const pokemonEntries = await getAllPokemons({pageParam: 0, limit: 20})
 
   
 
