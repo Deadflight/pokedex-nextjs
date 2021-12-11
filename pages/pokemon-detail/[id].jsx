@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { ni18nConfig } from "../../ni18n.config"
 
 
-export const getStaticProps = async ({params, locale}) => {
+export const getStaticProps = async ({params,locale}) => {
   const id = params?.id;
 
   if(typeof id !== 'string'){
@@ -39,19 +39,18 @@ export const getStaticProps = async ({params, locale}) => {
   }
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async ({locales}) => {
 
   const pokemonEntries = await getAllPokemons({pageParam: 0, limit: 20})
-
-  
 
   const paths = flatMap(
     pokemonEntries.map((pokemon) => ({
       params: {
         id: pokemon.url.slice(34,-1)
       }
-    }))
-  )
+    }),
+    (path) => locales.map((loc) => ({ locale: loc, ...path }))
+  ))
 
   return{
     paths,
