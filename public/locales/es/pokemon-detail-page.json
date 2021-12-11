@@ -7,26 +7,5 @@
   "special-attack": "Ataque especial",
   "special-defense": "Defensa especial",
   "speed": "Velocidad",
-  "baseStats":"Estadísticas base",
-
-  "stench": "Stench",
-  "drizzle": "Drizzle",
-  "speed-boost":"Speed Boost",
-  "battle-armor": "Battle Armor",
-  "sturdy": "Sturdy",
-  "damp": "Damp",
-  "limber": "Limber",
-  "sand-veil": "Sand Veil",
-  "static": "Static",
-  "volt-absorb": "Volt Absorb",
-  "water-absorb": "Water Absorb",
-  "oblivious": "Oblivious",
-  "cloud-nine": "Cloud Nine",
-  "compound-eyes": "Compound Eyes",
-  "insomnia": "Insomnia",
-  "color-change": "Color Change",
-  "immunity": "Immunity",
-  "flash-fire": "Flash Fire",
-  "shield-dust": "Shield Dust",
-  "own-tempo": "Own Tempo"
+  "baseStats":"Estadísticas base"
 }
