@@ -42,14 +42,14 @@ export const getStaticPaths = async ({locales}) => {
 
   const pokemonEntries = await getAllPokemons({pageParam: 0, limit: 20})
 
-  const paths = flatMap(
+  const paths = 
     pokemonEntries.map((pokemon) => ({
       params: {
         id: pokemon.url.slice(34,-1)
       }
     }),
-    (path) => locales.map((loc) => ({ locale: loc, ...path }))
-  ))
+    (path) => locales.map((loc) => ({ locale: loc}))
+  )
 
   return{
     paths,
