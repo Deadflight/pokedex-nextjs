@@ -9,9 +9,30 @@ import { loadTranslations } from "ni18n";
 import { useTranslation } from "react-i18next";
 import { ni18nConfig } from "../../ni18n.config"
 
+export const getStaticPaths = async ({locales}) => {
+
+  const pokemonEntries = await getAllPokemons({pageParam: 0, limit: 20})
+
+  const paths = 
+    pokemonEntries.map((pokemon) => ({
+      params: {
+        id: pokemon.url.slice(34,-1)
+      }
+    }),
+    (path) => locales.map((loc) => ({ locale: loc}))
+  )
+
+  return{
+    paths,
+
+    // Block until the server gets its data. Like in Server side rendering
+    fallback: 'blocking'
+  }
+}
 
 export const getStaticProps = async ({params,locale}) => {
   const id = params?.id;
+  console.log(locale)
   if(typeof id !== 'string'){
 
     return{
@@ -38,33 +59,9 @@ export const getStaticProps = async ({params,locale}) => {
   }
 }
 
-export const getStaticPaths = async ({locales}) => {
-
-  const pokemonEntries = await getAllPokemons({pageParam: 0, limit: 20})
-
-  const paths = 
-    pokemonEntries.map((pokemon) => ({
-      params: {
-        id: pokemon.url.slice(34,-1)
-      }
-    }),
-    (path) => locales.map((loc) => ({ locale: loc}))
-  )
-
-  return{
-    paths,
-
-    // Block until the server gets its data. Like in Server side rendering
-    fallback: 'blocking'
-  }
-}
-
 const PokemonDetail = ({ pokemon }) => {
 
   const { t } = useTranslation('pokemon-detail-page')
-  console.log(t)
-  console.log(t('abilities'))
-
   return (
     <Layout>
       <Grid container sx={{justifyContent: 'center'}}>

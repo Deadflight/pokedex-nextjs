@@ -6,6 +6,15 @@ module.exports = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
-    localeDetection: false
+    domains: [  // Define domains for each locale
+      {
+        domain: 'https://pokedex-nextjs-beta.vercel.app/',
+        defaultLocale: 'en'
+      },
+      {
+        domain: 'https://pokedex-nextjs-beta.vercel.app/es',
+        defaultLocale: 'es',
+      },
+    ]
   }
 }
