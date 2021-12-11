@@ -13,14 +13,14 @@ export const getStaticPaths = async ({locales}) => {
 
   const pokemonEntries = await getAllPokemons({pageParam: 0, limit: 20})
 
-  const paths = 
+  const paths = flatMap(
     pokemonEntries.map((pokemon) => ({
       params: {
         id: pokemon.url.slice(34,-1)
       }
     }),
     (path) => locales.map((loc) => ({ locale: loc}))
-  )
+  ))
 
   return{
     paths,
@@ -32,7 +32,6 @@ export const getStaticPaths = async ({locales}) => {
 
 export const getStaticProps = async ({params,locale}) => {
   const id = params?.id;
-  console.log(locale)
   if(typeof id !== 'string'){
 
     return{
@@ -61,7 +60,7 @@ export const getStaticProps = async ({params,locale}) => {
 
 const PokemonDetail = ({ pokemon }) => {
 
-  const { t } = useTranslation('pokemon-detail-page')
+  const { t } = useTranslation(['pokemon-detail-page'])
   return (
     <Layout>
       <Grid container sx={{justifyContent: 'center'}}>
@@ -92,7 +91,10 @@ const PokemonDetail = ({ pokemon }) => {
 
             <Grid item xs={12}>
                 <Typography variant="h6">
-                    {t('height')}: {pokemon?.height}
+                    {t('height')}: {pokemon?.height}kg
+                </Typography>
+                <Typography variant="h6">
+                    {t('Weight')}: {pokemon?.weight}kg
                 </Typography>
             </Grid>
             <Grid item xs={12}>

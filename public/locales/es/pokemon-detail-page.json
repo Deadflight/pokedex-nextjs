@@ -7,5 +7,6 @@
   "special-attack": "Ataque especial",
   "special-defense": "Defensa especial",
   "speed": "Velocidad",
-  "baseStats":"Estadísticas base"
+  "baseStats":"Estadísticas base",
+  "weight": "Peso"
 }

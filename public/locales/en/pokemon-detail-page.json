@@ -7,5 +7,6 @@
   "special-attack": "Special attack",
   "special-defense": "Special defense",
   "speed": "Speed",
-  "baseStats":"Base Stats"
+  "baseStats":"Base Stats",
+  "weight": "Weight"
 }
