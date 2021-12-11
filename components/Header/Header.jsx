@@ -67,7 +67,7 @@ const LocaleOptions = () => {
       </Typography>
       {locales.map((loc) => (
         <form
-          action="/api/language/"
+          action="/api"
           method="POST"
           key={loc}
         >
