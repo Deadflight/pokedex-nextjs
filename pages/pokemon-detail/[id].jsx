@@ -103,7 +103,7 @@ const PokemonDetail = ({ pokemon }) => {
             {
               pokemon?.stats?.map(({base_stat, stat}) => (
                 <Grid item md={6} key={base_stat}>
-                  <Typography variant="h6" >{t(`${stat?.name}`)}  : {base_stat}</Typography>
+                  <Typography variant="h6" >${stat?.name}  : {base_stat}</Typography>
                 </Grid>
               ))
             }
