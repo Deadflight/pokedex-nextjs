@@ -36,7 +36,6 @@ export {
 
 export const themeOptions = {
   palette: {
-    type: 'light',
     primary: {
       main: '#212121',
       light: '#484848',

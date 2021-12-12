@@ -8,6 +8,7 @@ import PokemonTypes from "@/components/PokemonTypes";
 import { loadTranslations } from "ni18n";
 import { useTranslation } from "react-i18next";
 import { ni18nConfig } from "../../ni18n.config"
+import ErrorPage from "pages/_error";
 
 export const getStaticPaths = async ({locales}) => {
 
@@ -19,7 +20,7 @@ export const getStaticPaths = async ({locales}) => {
         id: pokemon.url.slice(34,-1)
       }
     }),
-    (path) => locales.map((loc) => ({ locale: loc}))
+    locales.map((loc) => ({ locale: loc}))
   ))
 
   return{
@@ -59,8 +60,12 @@ export const getStaticProps = async ({params,locale}) => {
 }
 
 const PokemonDetail = ({ pokemon }) => {
-
   const { t } = useTranslation(['pokemon-detail-page'])
+
+  if(!pokemon){
+    return <ErrorPage statusCode={500}/>
+  }
+
   return (
     <Layout>
       <Grid container sx={{justifyContent: 'center'}}>
@@ -91,10 +96,7 @@ const PokemonDetail = ({ pokemon }) => {
 
             <Grid item xs={12}>
                 <Typography variant="h6">
-                    {t('height')}: {pokemon?.height}kg
-                </Typography>
-                <Typography variant="h6">
-                    {t('Weight')}: {pokemon?.weight}kg
+                    {t('weight')}: {pokemon?.weight}kg
                 </Typography>
             </Grid>
             <Grid item xs={12}>
