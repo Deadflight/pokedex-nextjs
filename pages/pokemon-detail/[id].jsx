@@ -44,6 +44,16 @@ export const getStaticProps = async ({params,locale}) => {
     const pokemon = await getPokemon(id)
     const i18nConf = await loadTranslations(ni18nConfig, locale, ['pokemon-detail-page'])
 
+    if(pokemon === undefined){
+      return{
+        props: {
+          pokemon: [],
+          ...i18nConf
+        },
+      revalidate: 5 * 60, // once every five minutes
+    }
+    }
+
     return{
       props: {
         pokemon,
@@ -61,9 +71,9 @@ export const getStaticProps = async ({params,locale}) => {
 
 const PokemonDetail = ({ pokemon }) => {
   const { t } = useTranslation(['pokemon-detail-page'])
-
-  if(!pokemon){
-    return <ErrorPage statusCode={500}/>
+  
+  if(pokemon.length === 0){
+    return <ErrorPage statusCode={404}/>
   }
 
   return (
