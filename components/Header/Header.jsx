@@ -33,6 +33,11 @@ const Header = () => {
           <Link href="/search" passHref>
             <IconButton aria-label="search" color="inherit">
               <SearchIcon/>
+              <Typography variant="body2"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block'} }}>
+                {t('search')}
+              </Typography>
             </IconButton>
           </Link>
           {/* <Search>
@@ -62,7 +67,7 @@ const LocaleOptions = () => {
 
   return (
     <>
-      <Typography sx={{pr: '0.25rem', display: { xs: 'none', sm: 'block'}}} variant="body2" component="span">
+      <Typography sx={{pr: '0.25rem', display: { xs: 'none', sm: 'block'}}} variant="body2" component="div">
         {t('language')}:
       </Typography>
       {locales.map((loc) => (

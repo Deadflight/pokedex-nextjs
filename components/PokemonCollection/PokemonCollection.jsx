@@ -4,7 +4,7 @@ import InfinitePokemons from "@/components/InfinitePokemons";
 
 const PokemonCollection = () => {
   return (
-        <Grid container spacing={4} sx={{justifyContent: 'center'}}>
+        <Grid container sx={{justifyContent: 'center'}}>
           <InfinitePokemons/>
         </Grid>
   )    
