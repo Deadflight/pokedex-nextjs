@@ -77,7 +77,6 @@ const PokemonDetail = ({ pokemon }) => {
   }
 
   return (
-    <Layout>
       <Grid container sx={{justifyContent: 'center'}}>
         <Grid item xs={12}>
           <Typography align="center" sx={{color: `${POKEMON_TYPES[pokemon?.types[0]?.type?.name]}`}} gutterBottom variant="h4">
@@ -122,7 +121,6 @@ const PokemonDetail = ({ pokemon }) => {
           </Grid>
         </Grid>
       </Grid>
-    </Layout>
   )
 }
 

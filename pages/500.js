@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import { loadTranslations } from "ni18n";
 import { useTranslation } from "react-i18next";
 import { ni18nConfig } from "../ni18n.config";
@@ -17,8 +16,7 @@ export const getStaticProps = async ({locale}) => {
 const ServerError = ({statusCode = 500}) => {
   const { t } = useTranslation('errors-page');
 
-  return (
-    <Layout>      
+  return (  
       <Grid container sx={{justifyContent: 'center'}}>
         <Grid item xs={12}>
           <Typography variant="h2" align="center" gutterBottom>
@@ -53,7 +51,6 @@ const ServerError = ({statusCode = 500}) => {
           </Button>
         </Grid>
       </Grid>
-    </Layout>
   );
 }
 

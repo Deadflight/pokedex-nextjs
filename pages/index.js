@@ -1,4 +1,3 @@
-import Layout from '@/components/Layout';
 import PokemonCollection from '@/components/PokemonCollection/PokemonCollection';
 import { loadTranslations } from 'ni18n';
 import { ni18nConfig } from "../ni18n.config"
@@ -16,8 +15,6 @@ export const getStaticProps = async({locale}) => {
 
 export default function Home(){ 
   return (
-    <Layout>
       <PokemonCollection/>
-    </Layout>
   )
 }

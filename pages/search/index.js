@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout"
 import PokemonCard from "@/components/PokemonCard"
 import { Grid, Container, SearchIcon, Typography, CircularProgress, Button, themeOptions, Box } from "@/ui/index.js"
 import { FormControl, InputAdornment, InputLabel, OutlinedInput } from "@mui/material"
@@ -48,7 +47,6 @@ const Search = () => {
   const emptyResults = status !== 'success' || get(data, 'pages.length', 0) === 0 || searchTerm === ""
 
   return (
-    <Layout>
       <Grid container spacing={4} sx={{justifyContent: 'center'}}> 
         <Grid item xs={12}>
           <Typography variant="h4" align="center" >{t('searchPokemon')}</Typography>
@@ -87,7 +85,6 @@ const Search = () => {
               : null
         }
       </Grid>
-    </Layout>
   )
 }
 

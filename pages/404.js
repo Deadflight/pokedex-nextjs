@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import { loadTranslations } from "ni18n";
 import { useTranslation } from "react-i18next";
 import { ni18nConfig } from "../ni18n.config"
@@ -19,7 +18,6 @@ const NotFound = () => {
   const { t } = useTranslation('errors-page');
 
   return (
-    <Layout>
       <Grid container sx={{justifyContent: 'center'}} >
         <Grid item xs={12}>
           <Typography variant="h2" align="center" gutterBottom >{t('wearesorry')}</Typography>
@@ -45,7 +43,6 @@ const NotFound = () => {
           </Button>
         </Grid>
       </Grid>
-    </Layout>
   );
 }
 
