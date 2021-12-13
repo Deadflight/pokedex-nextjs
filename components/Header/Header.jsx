@@ -10,8 +10,8 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <StyledAppBar position="static" >
-        <Toolbar>
+      <StyledAppBar position="static">
+        <Toolbar sx={{justifyContent: 'space-between'}}>
           <Link href="/" passHref>
             <IconButton
               size="large"
@@ -26,7 +26,7 @@ const Header = () => {
           <Typography variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block'} }}
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'block'} }}
           >
             Pokedex
           </Typography>
